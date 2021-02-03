@@ -42,3 +42,8 @@ public class HelloWorld {
 	}
 }
 ```
+
+## Methods
+void -> No devuelve nada
+constructor -> Devuelve la clase creada
+_resto_ -> Estás obligado a devolver algo con ese tipo
