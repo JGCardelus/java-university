@@ -1,4 +1,4 @@
-# Persona (02)
+# Constructor
 
 ## Operaciones aritméticas acortadas
 

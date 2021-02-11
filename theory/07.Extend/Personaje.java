@@ -1,63 +1,84 @@
-public class Personaje {
-	// Planeta es común para todas las personas
-	static String PLANETA;
-	// Atributos
-	String nombre;
-	int edad;
+public class Personaje
+{
+	//Atributo de CLASE
+	public final static int VIDA_MINIMA = 0;
+	public final static int VIDA_MAXIMA = 100;
 
-	// Constructor
-	Persona(String nombre, int edad) {
-		// DRY
-		this.setNombre(nombre); 
-		this.setEdad(edad);
-	}
+	private static String ISLA;
 
-	// Constructor
-	Persona(int edad, String nombre) {
-		// DRY
-		this.setNombre(nombre); 
-		this.setEdad(edad);
-	}
+	//Atributo de Instancia
+	private int vida;
+	private int material;
 
-	// Métodos
-	void print() {
-		if (PLANETA != null) {
-			System.out.println("Planeta: " + PLANETA);
-		}
-		System.out.println("Name: " + nombre);
-		System.out.println("Edad: " + edad);
-	}
-
-	static void setPLANETA(String planeta)
+	public Personaje()
 	{
-		PLANETA = planeta;
+		this(100, 0);
 	}
 
-	static String getPLANETA() {
-		return PLANETA;
+	public Personaje(int vida)
+	{
+		this.setVida(vida);
 	}
 
-	void setNombre(String nombre) {
-		// Since nombre is a local and global variable
-		// we need to add the "this."  to differenciate both variables
-		this.nombre = nombre.toUpperCase();
+	public Personaje(int vida, int material)
+	{
+		this.setVida(vida);
+		this.material = material;
 	}
 
-	String getNombre() {
-		// Here "this." is not necessary since there is only one
-		// variable with that name in this scope
-		return nombre;
+	public static void setISLA(String isla)
+	{
+		ISLA = isla;
+		//ERROR: vida = 99;
 	}
 
-	void setEdad(int edad) {
-		if (edad >= 0 && edad <= 120) {
-			this.edad = edad;
-		} else {
-			System.out.println("¡Oye! Tu edad es biologicamente imposible.");	
-		}
-	} 
+	public static String getISLA()
+	{
+		return ISLA;
+	}
 
-	int getEdad() {
-		return this.edad;
+	public int getVida()
+	{
+		return vida;
+	}
+
+	public int getMaterial()
+	{
+		return material;
+	}
+
+	public void setVida(int vida)
+	{
+		if(vida > VIDA_MINIMA && vida <= VIDA_MAXIMA)
+			this.vida = vida;
+	}
+
+	public void setMaterial(int material)
+	{
+		this.material = material;
+	}	
+
+	public void herir(int herida)
+	{
+		vida -= herida;
+	}
+
+	public void picar(int material)
+	{
+		this.setMaterial(material);
+	}
+
+	public boolean isVivo()
+	{
+		//return (vida > 0);
+		if(vida > VIDA_MINIMA)
+			return true;
+		else
+			return false;
+	}
+
+	public String getInfo()
+	{
+		return ISLA + "-->" + vida + "-" + material;
 	}
 }

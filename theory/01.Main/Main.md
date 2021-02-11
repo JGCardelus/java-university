@@ -1,3 +1,3 @@
-# Persona
+# Main
 
 When developing an project the program with the *main* method will have the prefix *App*. So here we have a class *Persona* it will be instanciated and called by *AppPersona*. We can have multiple apps that use the object *Persona* but we can't have multiple object that have the same function (therefore, we can't create objects like *Persona1* or *Persona2* but we can create multiple apps such as *AppPersona1* or *AppPersona2*).
