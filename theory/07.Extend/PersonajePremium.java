@@ -24,4 +24,9 @@ public class PersonajePremium extends Personaje {
 	public void setSkins(String skins) {
 		this.skins = skins;
 	}
+
+	@Override
+	public String getInfo() {
+		return ISLA + "-->" + vida + "-" + material + "-" + this.skins;
+	}
 }

@@ -1,8 +1,7 @@
 public class Cuadrado {
-	private int x;
-	private int y;
-	private int lado;
-	private static boolean FILL;
+	int x;
+	int y;
+	int lado;
 
 	Cuadrado(int x, int y, int lado) {
 		this.setX(x);
@@ -13,14 +12,6 @@ public class Cuadrado {
 	// If lado is not given, generate cuadrado of lado 1
 	Cuadrado(int x, int y) {
 		this(x, y, 1);
-	}
-
-	public static void setFILL(boolean fill) {
-		FILL = fill;
-	}
-	
-	public static boolean getFILL() {
-		return FILL;
 	}
 
 	public void setX(int x) {
@@ -39,12 +30,6 @@ public class Cuadrado {
 		}
 	}
 
-	// Wrapper for easy moving
-	public void moveTo(int x, int y) {
-		this.setX(x);
-		this.setY(y);
-	}
-
 	public int getX() {
 		return this.x;
 	}
@@ -55,10 +40,6 @@ public class Cuadrado {
 
 	public int getLado() {
 		return this.lado;
-	}
-
-	public void print() {
-		System.out.println("Cuadrado: (" + this.getX() + ", " + this.getY() + "); " + this.getLado() + "; " + getFILL());
 	}
 
 }

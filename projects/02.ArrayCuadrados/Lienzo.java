@@ -98,7 +98,7 @@ public class Lienzo extends Canvas
 				graphics.setColor(Color.BLUE);
 				graphics.drawRect(cuadrado.getX(), cuadrado.getY(), cuadrado.getLado(), cuadrado.getLado());
 				
-				if (cuadrado.getFill()) {
+				if (cuadrado.getFILL()) {
 					graphics.fillRect(cuadrado.getX(), cuadrado.getY(), cuadrado.getLado(), cuadrado.getLado());
 				}
 			}
