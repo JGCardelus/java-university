@@ -15,8 +15,10 @@ public class Lienzo extends Canvas
 		for (Cuadrado cuadrado:this.cuadrados) {
 			if(cuadrado!=null)
 			{
-				g.setColor(Color.RED);
+				g.setColor(Color.BLUE);
 				g.drawRect(cuadrado.getX(), cuadrado.getY(), cuadrado.getLado(), cuadrado.getLado()); 
+				if (cuadrado.isRELLENO())
+					g.fillRect(cuadrado.getX(), cuadrado.getY(), cuadrado.getLado(), cuadrado.getLado())
 			}
 		}
 	}

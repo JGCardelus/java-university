@@ -1,7 +1,8 @@
 public class Cuadrado {
-	int x;
-	int y;
-	int lado;
+	private int y;
+	private int x;
+	private int lado;
+	static boolean RELLENO;
 
 	Cuadrado(int x, int y, int lado) {
 		this.setX(x);
@@ -42,4 +43,15 @@ public class Cuadrado {
 		return this.lado;
 	}
 
+	public static void setRELLENO(boolean relleno) {
+		RELLENO = relleno;
+	}
+
+	public static boolean getRELLENO() {
+		return RELLENO;
+	}
+
+	public static boolean isRELLENO() {
+		return RELLENO;
+	}
 }

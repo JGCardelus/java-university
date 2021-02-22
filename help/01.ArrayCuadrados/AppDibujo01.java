@@ -5,6 +5,7 @@ public class AppDibujo01 {
 		Dibujo dibujo = new Dibujo();
 		
 		// Create the square
+		Cuadrado.setRELLENO(true);
 		Cuadrado cuadrados[];
 
 		Cuadrado cuadrado = new Cuadrado(100, 100, 100);

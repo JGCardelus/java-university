@@ -5,6 +5,7 @@ public class AppDibujo02 {
 		Dibujo dibujo = new Dibujo();
 		
 		// Create the square
+		Cuadrado.setRELLENO(true);
 		Cuadrado cuadrados[];
 
 		// Primer cuadrado

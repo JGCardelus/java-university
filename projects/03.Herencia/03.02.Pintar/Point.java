@@ -1,7 +1,7 @@
 public class Point {
 	
-	int x;
-	int y;
+	private int x;
+	private int y;
 
 	Point(int x,int y) {
 		this.setX(x);

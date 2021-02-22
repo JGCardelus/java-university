@@ -92,3 +92,13 @@ Si queremos que extender la funcionalidad de un método cuando hacemos upcasting
 	// Si queremos recuperar la funcionalidad de pp1
 	pp1 = p1; // Downcasting
 ```
+
+## instanceof
+
+To check if class of A == class of B
+```java
+	if (objeto instanceof Objeto) {
+		System.out.println("Yes");
+	}
+```
+
