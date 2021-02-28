@@ -1,6 +1,25 @@
 public class List<TYPE> {
 	private Object objects[]; // Initialize empty
 	
+	/**
+	 * Start with two elements in the list
+	 * @param objects
+	 */
+	List(TYPE objects[])  {
+		this.push(objects);
+	}
+
+	/**
+	 * Start with one element in the list
+	 * @param object
+	 */
+	List(TYPE object) {
+		this.push(object);
+	}
+
+	/**
+	 * Start with an empty list
+	 */
 	List() {
 		this.objects = new Object[0];
 	}
@@ -42,6 +61,80 @@ public class List<TYPE> {
 		this.insert(objects, index);
 	}
 
+	/**
+	 * Remove the last element in the list and return it
+	 * @return
+	 */
+	public TYPE pop() {
+		return this.remove(this.objects.length - 1);
+	}
+
+	/**
+	 * Remove the specified index from the list and return it
+	 * @param index
+	 * @return
+	 */
+	public TYPE pop(int index) {
+		return this.remove(index);
+	}
+
+	public TYPE pop(TYPE object) {
+		int index = this.indexOf(object);
+		return this.pop(index);
+	}
+
+	/**
+	 * Clears the list
+	 */
+	public void clear() {
+		this.objects = new Object[0];
+	}
+
+	/**
+	 * Return the length of the list
+	 * @return
+	 */
+	public int length() {
+		return this.objects.length;
+	}
+
+	/**
+	 * Private method that handles the logic of removing an {@link Object}
+	 * @param index
+	 * @return
+	 */
+	private TYPE remove(int index) {
+		if (index >= 0 && index < this.objects.length) {
+			Object temp[] = this.objects;
+			this.objects = new Object[temp.length - 1];
+
+			// Will never return null
+			TYPE removed = null;
+
+			boolean found = false;
+			for (int i = 0; i < temp.length; i++) {
+				int a = i;
+				if (i == index) {
+					found = true;
+					removed = (TYPE) temp[i];
+				} else {
+					if (found) a--;
+					this.objects[a] = temp[i]; 
+				}
+			}
+
+			return removed;
+		}
+		return null;
+		
+	}
+
+	/**
+	 * Private method that handle the logic of adding an {@link Object}.
+	 * It's privatize because it allows any object to be passed, while push
+	 * (the public method) on allows for {@link TYPE} to be passed.
+	 * @param objects
+	 */
 	private void add(Object objects[]) {
 		// Allocate memory in array
 		this.malloc(objects.length);
@@ -56,6 +149,13 @@ public class List<TYPE> {
 		// and it's not reused for performance
 	}
 
+	/**
+	 * Private method that handle the logic of inserting an {@link Object}.
+	 * It's privatize because it allows any object to be passed, while push
+	 * (the public method) on allows for {@link TYPE} to be passed.
+	 * @param objects
+	 * @param index
+	 */
 	private void insert(Object objects[], int index) {
 		// Allocate memory in array
 		Object temp[] = this.objects;
@@ -79,14 +179,82 @@ public class List<TYPE> {
 		}
 	}
 
-	public TYPE get(int i) {
-		if (i >= 0 && i < this.objects.length) {
-			return (TYPE) this.objects[i];
+	/**
+	 * Gets the element stored in the index passed
+	 * @param index
+	 * @return
+	 */
+	public TYPE get(int index) {
+		if (index >= 0 && index < this.objects.length) {
+			// No downcasting check because it's impossible for 
+			// another Class to be stored (check push method)
+			return (TYPE) this.objects[index];
 		}
-		// Return error, trying to access index out of bounds
-		throw new IndexOutOfBoundsException();
+		return null;
 	}
 
+	// TODO: How to return type???
+
+	/**
+	 * Returns all objects
+	 * @return
+	 */
+	public Object[] all() {
+		return this.objects;
+	}
+
+	/**
+	 * Return objects from start to end - 1
+	 * @param object
+	 * @return
+	 */
+	public Object[] slice(int start, int end) {
+		if (start < end && end <= this.objects.length) {
+			Object[] sliced = new Object[end-start];	
+			for (int i = start; i < end; i++) {
+				sliced[i - start] = this.objects[i];
+			}
+			return sliced;
+		}
+		return new Object[]{};
+	}
+
+	/**
+	 * Returns if the list contains the object passed
+	 * @param object
+	 * @return
+	 */
+	public boolean includes(TYPE object) {
+		for (Object challengeObject:this.objects) {
+			if (object.equals((TYPE) challengeObject)) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/**
+	 * Returns the index at which an object is stored. In case there are
+	 * duplicates, it returns the first coincidence.
+	 * @param object
+	 * @return
+	 */
+	public int indexOf(TYPE object) {
+		for (int i = 0;i < this.objects.length; i++) {
+			TYPE challengeObject = (TYPE) this.objects[i];
+			if (object.equals(challengeObject)) {
+				return i;
+			}
+		}
+
+		return -1;
+	}
+
+	/**
+	 * Private method that generates the memory in the array
+	 * @param size
+	 */
 	private void malloc(int size) {
 		Object temp[] = this.objects;
 		this.objects = new Object[temp.length + size];

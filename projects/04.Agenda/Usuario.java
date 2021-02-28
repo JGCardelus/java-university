@@ -1,5 +1,5 @@
 public class Usuario {
-	public static final int DNI_LENGTH = 9;
+	public static final int DNI_LENGTH = 2;
 	public static final int MAX_EDAD = 120;
 
 	private String dni;
@@ -8,7 +8,7 @@ public class Usuario {
 	private String username;
 	private int edad;
 
-	Usuario(String username, String dni, String nombre, String apellidos, int edad) {
+	Usuario(String dni, String username, String nombre, String apellidos, int edad) {
 		this.setUsername(username);
 		this.setDni(dni);
 		this.setNombre(nombre);
@@ -16,15 +16,27 @@ public class Usuario {
 		this.setEdad(edad);
 	}
 
-	Usuario(String username, String dni) {
-		this.setUsername(username);
-		this.setDni(dni);
+	Usuario(String dni, String username) {
+		this(dni, username, "", "", 0);
 	}
 
-	public void setDni(String dni) {
+	Usuario(String dni) {
+		this(dni, "", "", "", 0);
+	}
+
+	public boolean setDni(String dni) {
 		if (dni.length() == DNI_LENGTH) {
 			this.dni = dni;
+			return true;
+		} 
+		return false;
+	}
+
+	public boolean modifyDni(String dni) {
+		if (!this.dni.equals(dni) && !dni.equals("")) {
+			return this.setDni(dni);
 		}
+		return true;
 	}
 
 	public String getDni() {
@@ -35,12 +47,24 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
+	public void modifyNombre(String nombre) {
+		if (!this.nombre.equals(nombre) && !nombre.equals("")) {
+			this.setNombre(nombre);
+		}
+	}
+
 	public String getNombre() {
 		return this.nombre;
 	}
 
 	public void setApellidos(String apellidos) {
 		this.apellidos = apellidos;
+	}
+
+	public void modifyApellidos(String apellidos) {
+		if (!this.apellidos.equals(apellidos) && !apellidos.equals("")) {
+			this.setApellidos(apellidos);
+		}
 	}
 
 	public String getApellidos() {
@@ -50,6 +74,14 @@ public class Usuario {
 	public void setUsername(String username) {
 		if (!username.equals("")) {
 			this.username = username;
+		} else {
+			this.username = "";
+		}
+	}
+
+	public void modifyUsername(String username) {
+		if (!this.username.equals(username) && !username.equals("")) {
+			this.setUsername(username);
 		}
 	}
 
@@ -63,6 +95,12 @@ public class Usuario {
 		}
 	}
 
+	public void modifyEdad(int edad) {
+		if (this.edad != edad) {
+			this.setEdad(edad);
+		}
+	}
+	
 	public int getEdad() {
 		return this.edad;
 	}
@@ -71,20 +109,36 @@ public class Usuario {
 	public boolean equals(Object obj) {
 		if (obj instanceof Usuario) {
 			Usuario comp = (Usuario) obj;
-			if (comp.getDni().equals(this.getDni())) 
+
+			String compDni = comp.getDni();
+			if (compDni == null) {
+				return false;
+			}
+
+			String thisDni = this.getDni();
+			if (thisDni == null) {
+				return false;
+			}
+
+			if (compDni.equals(thisDni)) {
 				return true;
+			}
 		}
 		return false;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder information = new StringBuilder(this.getUsername());
-		if (this.getNombre() != null) {
+		StringBuilder information = new StringBuilder(this.getDni());
+		if (!this.getUsername().equals("")) {
+			information.append("\n\tUsuario: ");
+			information.append(this.getUsername());
+		}
+		if (!this.getNombre().equals("")) {
 			information.append("\n\tNombre: ");
 			information.append(this.getNombre());
 		}
-		if (this.getApellidos() != null) {
+		if (!this.getApellidos().equals("")) {
 			information.append("\n\tApellidos: ");
 			information.append(this.getApellidos());
 		}
@@ -92,8 +146,6 @@ public class Usuario {
 			information.append("\n\tEdad: ");
 			information.append(this.getEdad());
 		}
-		information.append("\n\tDNI: ");
-		information.append(this.getDni());
 
 		return information.toString();
 	}
