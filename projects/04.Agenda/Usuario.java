@@ -24,12 +24,17 @@ public class Usuario {
 		this(dni, "", "", "", 0);
 	}
 
+	public static boolean checkDni(String dni) {
+		return dni.length() == DNI_LENGTH;
+	}
+
 	public boolean setDni(String dni) {
-		if (dni.length() == DNI_LENGTH) {
+		boolean dniOK = checkDni(dni);
+		if (dniOK) {
 			this.dni = dni;
-			return true;
 		} 
-		return false;
+
+		return dniOK;
 	}
 
 	public boolean modifyDni(String dni) {
@@ -131,19 +136,19 @@ public class Usuario {
 	public String toString() {
 		StringBuilder information = new StringBuilder(this.getDni());
 		if (!this.getUsername().equals("")) {
-			information.append("\n\tUsuario: ");
+			information.append("\n/\tUsuario: ");
 			information.append(this.getUsername());
 		}
 		if (!this.getNombre().equals("")) {
-			information.append("\n\tNombre: ");
+			information.append("\n/\tNombre: ");
 			information.append(this.getNombre());
 		}
 		if (!this.getApellidos().equals("")) {
-			information.append("\n\tApellidos: ");
+			information.append("\n/\tApellidos: ");
 			information.append(this.getApellidos());
 		}
 		if (this.getEdad() != 0) {
-			information.append("\n\tEdad: ");
+			information.append("\n/\tEdad: ");
 			information.append(this.getEdad());
 		}
 

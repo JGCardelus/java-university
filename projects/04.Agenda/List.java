@@ -1,3 +1,19 @@
+/**
+ * Variable length list
+ * v.1
+ * 
+ * Features of v.1:
+ * 		-> Can push, pop, clear, set, get and slice objects
+ * 		-> You can only add objects of class TYPE
+ * 		-> all() returns all objects in the list (as Object), slice too
+ * 
+ * Possible improvements for v.2:
+ * 		-> Return arrays of class TYPE (Array.copy??)
+ * 		-> Add iterators to be able to do foreachs like the cool kids
+ * 		-> Improve malloc, add, insert and remove so they are more
+ * 			efficient, (use Arrays??)
+ */
+
 public class List<TYPE> {
 	private Object objects[]; // Initialize empty
 	
@@ -129,8 +145,14 @@ public class List<TYPE> {
 		
 	}
 
+	public void set(int index, TYPE object) {
+		if (index >= 0 && index < this.objects.length) {
+			this.objects[index] = object;
+		}
+	}
+
 	/**
-	 * Private method that handle the logic of adding an {@link Object}.
+	 * Private method that handles the logic of adding an {@link Object}.
 	 * It's privatize because it allows any object to be passed, while push
 	 * (the public method) on allows for {@link TYPE} to be passed.
 	 * @param objects
@@ -150,7 +172,7 @@ public class List<TYPE> {
 	}
 
 	/**
-	 * Private method that handle the logic of inserting an {@link Object}.
+	 * Private method that handles the logic of inserting an {@link Object}.
 	 * It's privatize because it allows any object to be passed, while push
 	 * (the public method) on allows for {@link TYPE} to be passed.
 	 * @param objects
@@ -192,8 +214,6 @@ public class List<TYPE> {
 		}
 		return null;
 	}
-
-	// TODO: How to return type???
 
 	/**
 	 * Returns all objects
