@@ -32,7 +32,7 @@ public class Terminal {
 	}
 
 	public static int askApp(Menu menu) {
-		System.out.println(menu.toString());
+		System.out.print(menu.toString());
 		System.out.print("\n*\n*\n*\t >> ");
 
 		String response = Leer.porTeclado();

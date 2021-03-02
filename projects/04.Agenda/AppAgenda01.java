@@ -49,7 +49,8 @@ public class AppAgenda01 {
 		Usuario usuario = findUser(agenda);
 		agenda.deleteUser(usuario);
 		showUser(usuario);
-		Terminal.notify("Ha sido eliminado");
+		if (usuario != null)
+			Terminal.notify("Ha sido eliminado");
 	} 
 
 	public static void showUser(Usuario usuario) {
