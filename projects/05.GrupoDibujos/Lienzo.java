@@ -20,13 +20,13 @@ public class Lienzo extends Canvas {
 		return this.dibujo;
 	}
 
-	public void pintar(Dibujo dibujo) {
+	public void addPaint(Dibujo dibujo) {
 		this.setDibujo(dibujo);
 	}
 
 	// Añadir métodos para pintar figuras
 	public void paint(Graphics graphics) {
-		for (LinkedList<Figura> grupo : this.getDibujo().getGrupos().values()) {
+		for (LinkedList<Figura> grupo : this.dibujo.getGrupos().values()) {
 			for (Figura figura : grupo) {
 				if (figura.getMostrar()) {
 					figura.pintar(graphics);
