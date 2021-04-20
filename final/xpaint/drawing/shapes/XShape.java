@@ -3,7 +3,6 @@ package drawing.shapes;
 import drawing.CanvasMouseEvents;
 import drawing.Point;
 import drawing.Size;
-import drawing.shapes.events.ShapeDefinedListener;
 
 import java.awt.event.MouseEvent;
 import java.util.LinkedList;
