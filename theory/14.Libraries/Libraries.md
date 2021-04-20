@@ -1,0 +1,1 @@
+javac -cp .;_[nombre de la libreria]_.java [nombre del programa].java

@@ -91,14 +91,12 @@ public class JVentanaDibujo extends JFrame {
 	}
 
 	public void initEvents() {
-		// Local copy of self, better way??
-		JVentanaDibujo self = this;
 		this.txtX.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyPressed(KeyEvent e) {
 				int code = e.getKeyCode();
 				if (code == KeyEvent.VK_ENTER) {
-					self.txtY.requestFocus();
+					JVentanaDibujo.this.txtY.requestFocus();
 				}	
 			}
 		});
@@ -108,7 +106,7 @@ public class JVentanaDibujo extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				int code = e.getKeyCode();
 				if (code == KeyEvent.VK_ENTER) {
-					self.txtSize.requestFocus();
+					JVentanaDibujo.this.txtSize.requestFocus();
 				}	
 			}
 		});
@@ -118,7 +116,7 @@ public class JVentanaDibujo extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				int code = e.getKeyCode();
 				if (code == KeyEvent.VK_ENTER) {
-					self.txtGroup.requestFocus();
+					JVentanaDibujo.this.txtGroup.requestFocus();
 				}	
 			}
 		});
@@ -128,7 +126,7 @@ public class JVentanaDibujo extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				int code = e.getKeyCode();
 				if (code == KeyEvent.VK_ENTER) {
-					self.handleTxtGroupEnter();
+					JVentanaDibujo.this.handleTxtGroupEnter();
 				}
 			}
 		});
@@ -136,21 +134,21 @@ public class JVentanaDibujo extends JFrame {
 		this.btnCircle.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				self.addCircle(self.getBasicShapePropertiesFromText());
+				JVentanaDibujo.this.addCircle(JVentanaDibujo.this.getBasicShapePropertiesFromText());
 			}
 		});
 
 		this.btnSquare.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				self.addSquare(self.getBasicShapePropertiesFromText());
+				JVentanaDibujo.this.addSquare(JVentanaDibujo.this.getBasicShapePropertiesFromText());
 			}
 		});
 
 		this.btnChangeGroupVisibility.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				self.changeGroupVisibility(self.getBasicShapePropertiesFromText().group);
+				JVentanaDibujo.this.changeGroupVisibility(JVentanaDibujo.this.getBasicShapePropertiesFromText().group);
 				
 			}
 		});
@@ -158,14 +156,14 @@ public class JVentanaDibujo extends JFrame {
 		this.btnChangeGroupFill.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				self.changeGroupFill(self.getBasicShapePropertiesFromText().group);
+				JVentanaDibujo.this.changeGroupFill(JVentanaDibujo.this.getBasicShapePropertiesFromText().group);
 			}
 		});
 
 		this.btnTestRoutine.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				//self.testRoutine();
+				//JVentanaDibujo.this.testRoutine();
 				System.out.println("Not working yet.");
 			}
 		});
