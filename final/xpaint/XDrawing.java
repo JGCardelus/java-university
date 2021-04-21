@@ -16,6 +16,7 @@ public class XDrawing implements CanvasMouseEvents {
 
 	public XDrawing(XPaint xpaint) {
 		shapes = new LinkedList<XShape>();
+		selectedShapes = new LinkedList<XShape>();
 		this.setXpaint(xpaint);
 	}
 
@@ -51,17 +52,20 @@ public class XDrawing implements CanvasMouseEvents {
 	}
 
 	public void paint(Graphics graphics) {
+		// Has to be done first, DRY?
 		if (newShape != null) {
 			if (newShape.isDefined()) {
 				this.addNewShape();
-			} else {
-				// If it has been defined, reset
-				newShape.paint(graphics);
 			}
 		}
 
 		for (XShape shape : this.shapes) {
 			shape.paint(graphics);
+		}
+
+		if (newShape != null) {
+			// If it has been defined, reset
+			newShape.paint(graphics);
 		}
 	}
 
